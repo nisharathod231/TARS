@@ -1,1 +1,51 @@
+# Example Webots World for TARS Robot
+worldInfo {
+  basicTimeStep 32
+  cpu 1
+}
 
+robot TARS {
+  # Main body segment (torso)
+  Solid {
+    translation 0 0.3 0
+    rotation 0 1 0 0
+    children [
+      # Add the rectangular body part (torso)
+      Shape {
+        appearance Appearance {
+          material Material {
+            diffuseColor 0.8 0.8 0.8
+          }
+        }
+        geometry Box {
+          size 0.4 0.6 0.2
+        }
+      }
+    ]
+  }
+
+  # Limbs (arms and legs)
+  Solid {
+    translation 0.5 0.3 0
+    children [
+      Shape {
+        appearance Appearance {
+          material Material {
+            diffuseColor 0.7 0.7 0.7
+          }
+        }
+        geometry Box {
+          size 0.15 0.4 0.1
+        }
+      }
+    ]
+    # Add more segments for arms and legs, using HingeJoint to allow rotation
+  }
+
+  # Motors to control the robot's movement
+  Motor {
+    name "upper_arm_motor"
+    position 0.0  # Position of the hinge joint
+    motor 1.0  # Speed
+  }
+}
